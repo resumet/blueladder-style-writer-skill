@@ -1,0 +1,14 @@
+interface:
+  display_name: 블루래더 콘텐츠 스튜디오
+  short_description: 블루래더 글·이미지를 상대경로 HTML과 10MB 이내 ZIP으로 제작
+  default_prompt: 키워드와 주제를 주면 블루래더 문체로 글과 1:1 대표 이미지·섹션별 가로형 이미지를 만들고, HTML이 ZIP 내부
+    images 폴더의 이미지를 상대경로로 참조하도록 10MB 이내 ZIP으로 제공해줘.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

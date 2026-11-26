@@ -1,0 +1,2 @@
+# Only the KPI infographic renderer needs a third-party Python package.
+Pillow>=10.0
