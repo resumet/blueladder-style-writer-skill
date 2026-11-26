@@ -2,11 +2,83 @@
 
 키워드와 주제를 받아 **블루래더 문체의 한국어 블로그 글, 대표 이미지, 섹션별 이미지·도표, HTML·이미지 ZIP**을 만드는 AI 에이전트용 스킬입니다. 문체 작성 지침과 실제 블로그 글 100편을 함께 제공하므로, 다른 사람도 같은 작성 기준을 참고해 사용할 수 있습니다.
 
-**[설치용 ZIP 다운로드](https://github.com/resumet/blueladder-style-writer-skill/raw/refs/heads/main/dist/blue-ladder-content-studio.zip)** · [저장소](https://github.com/resumet/blueladder-style-writer-skill) · [스킬 지침](SKILL.md)
+**[GitHub에서 설치하기](#github에서-설치하기)** · [설치용 ZIP 다운로드](https://github.com/resumet/blueladder-style-writer-skill/raw/refs/heads/main/dist/blue-ladder-content-studio.zip) · [스킬 지침](SKILL.md)
 
 ## 빠르게 사용하기
 
-### 스킬 설치를 지원하는 환경
+### GitHub에서 설치하기
+
+이 저장소는 공개되어 있어 **원본 파일을 읽고 개인용 사본을 설치하는 데 `resumet` 저장소의 쓰기 권한이나 공동 작업자 초대가 필요하지 않습니다.** 원본 저장소에 접근하는 권한과 받는 사람의 계정·컴퓨터에 스킬을 등록하는 권한은 별도로 확인합니다.
+
+| 설치 항목 | 값 |
+| --- | --- |
+| 저장소 | `resumet/blueladder-style-writer-skill` |
+| HTTPS 주소 | `https://github.com/resumet/blueladder-style-writer-skill.git` |
+| 브랜치 | `main` |
+| 스킬 경로 | `.` — 저장소 루트 |
+| 설치 이름 | `blue-ladder-content-studio` |
+| 스킬 지침 | 저장소 루트의 `SKILL.md` |
+
+**ChatGPT에서 스킬 설치를 지원하는 환경이라면**, 아래 요청을 그대로 전달합니다. 설치 가능 여부는 사용하는 제품·계정·워크스페이스 설정에 따라 달라집니다. 공식 안내: [스킬 만들기 및 설치](https://learn.chatgpt.com/docs/build-skills), [워크스페이스의 스킬 관리](https://learn.chatgpt.com/docs/enterprise/skills).
+
+```text
+다음 공개 GitHub 저장소의 독립 스킬을 현재 환경에서 지원하는 스킬 설치 도구와 절차로 내 계정에 설치해줘.
+
+저장소: https://github.com/resumet/blueladder-style-writer-skill
+브랜치: main
+스킬 경로: . (저장소 루트)
+설치 이름: blue-ladder-content-studio
+
+SKILL.md와 references, scripts, assets, agents, requirements.txt를 함께 사용하도록 설치해줘.
+설치 대상은 내 계정의 개인 스킬이며, 원본 GitHub 저장소에 변경을 푸시할 필요는 없어.
+실제로 설치되었는지 확인한 뒤 결과를 알려줘. 다운로드나 ZIP 생성만 끝난 상태를 설치 완료라고 하지 말아줘.
+막히면 원본 읽기, 설치 대상 쓰기, 스킬 등록 중 어느 단계인지와 실제 오류를 알려줘.
+이 환경에 설치 기능이 없다면 그 제한을 설명해줘. 접근 제한이나 관리자 정책은 우회하지 마.
+```
+
+이 저장소는 루트 `SKILL.md`를 사용하는 **독립 스킬**입니다. 플러그인용 `.codex-plugin` 매니페스트는 포함하지 않으므로, 플러그인 저장소 등록 화면 대신 해당 환경의 스킬 설치 방식을 사용합니다. 스킬과 플러그인의 관리 범위는 [공식 관리 안내](https://learn.chatgpt.com/docs/enterprise/skills)를 참고하세요.
+
+### 로컬 Codex CLI·IDE에서 설치
+
+다음 방법은 **본인 컴퓨터에서 실행하는 Codex CLI·IDE용**입니다. ChatGPT 클라우드의 개인 스킬 저장 위치를 지정하는 명령이 아닙니다. 로컬 스킬 위치와 설치 도구는 [공식 스킬 안내](https://learn.chatgpt.com/docs/build-skills)를 기준으로 합니다.
+
+`$skill-installer`가 제공되는 Codex 환경에서는 다음처럼 요청할 수 있습니다.
+
+```text
+$skill-installer
+resumet/blueladder-style-writer-skill 저장소의 main 브랜치에서
+스킬 경로 . (저장소 루트)를 설치해줘.
+설치 이름은 blue-ladder-content-studio로 지정해줘.
+```
+
+설치 도구가 `install-skill-from-github.py`를 사용한다면 **저장소 주소만 전달하지 말고 `--path .`와 `--name blue-ladder-content-studio`를 함께 지정**합니다. 실행 파일의 위치는 현재 환경의 설치 도구가 제공하는 경로를 사용하고, 전달할 인수는 다음과 같습니다.
+
+```text
+--url https://github.com/resumet/blueladder-style-writer-skill --ref main --path . --name blue-ladder-content-studio
+```
+
+해당 설치 스크립트에 저장소 URL만 전달하면 `Missing --path for GitHub URL` 오류가 발생할 수 있습니다. 루트 경로 `.`만 지정하고 설치 이름을 생략하면 `Invalid skill name` 오류가 발생할 수 있습니다. 이 두 오류는 설치 경로·이름을 지정하는 인수 문제이므로, 오류 문구만 보고 GitHub 접근 권한이 없다고 판단하지 않습니다.
+
+직접 Git으로 설치하려면 개인 스킬 디렉터리에 복제합니다. **HTTPS 주소를 사용하므로 SSH 키를 준비할 필요가 없습니다.** 목적지에 같은 이름의 폴더가 이미 있으면 먼저 기존 내용을 확인하고, 자동으로 삭제하거나 덮어쓰지 마세요.
+
+macOS·Linux:
+
+```bash
+mkdir -p "$HOME/.agents/skills"
+git clone --depth 1 https://github.com/resumet/blueladder-style-writer-skill.git "$HOME/.agents/skills/blue-ladder-content-studio"
+```
+
+Windows PowerShell:
+
+```powershell
+$blueLadderSkillsPath = Join-Path $env:USERPROFILE ".agents\skills"
+New-Item -ItemType Directory -Path $blueLadderSkillsPath -Force | Out-Null
+git clone --depth 1 https://github.com/resumet/blueladder-style-writer-skill.git (Join-Path $blueLadderSkillsPath "blue-ladder-content-studio")
+```
+
+복제 후 `blue-ladder-content-studio/SKILL.md`와 참고 자료가 존재하는지 확인하고, 사용하는 Codex 환경에서 스킬이 인식되는지 확인합니다. Git 다운로드 성공과 제품에서의 스킬 인식 여부를 각각 확인해야 합니다.
+
+### ZIP으로 설치하기
 
 1. 위 링크에서 `blue-ladder-content-studio.zip`을 내려받습니다.
 2. 스킬 설치를 지원하는 ChatGPT 환경에 ZIP을 첨부하고 다음과 같이 요청합니다.
@@ -28,6 +100,23 @@
    ```
 
 설치 지원 여부와 사용할 수 있는 도구는 계정·실행 환경에 따라 달라집니다. 다른 스킬 지원 에이전트에서는 해당 환경의 설치 방식에 따라 ZIP 안의 `blue-ladder-content-studio` 폴더를 등록합니다. 폴더 안의 `SKILL.md`, `references`, `scripts`, `assets`, `agents` 구조를 유지해 주세요.
+
+### “권한이 없다”거나 ZIP만 제공되는 경우
+
+먼저 **실제로 실패한 명령 또는 설치 동작과 오류 원문**을 확인합니다. “권한이 없을 것 같다”는 설명이나 ZIP을 받았다는 사실만으로는 실패 원인을 판별할 수 없습니다.
+
+| 실패 단계·메시지 | 확인할 내용 |
+| --- | --- |
+| `git ls-remote` 또는 `git clone` 실패 | 위 HTTPS 주소를 사용했는지, 실제 Git 오류와 HTTP 상태, 실행 환경의 네트워크 접근 정책을 확인합니다. |
+| ChatGPT의 GitHub 연결 도구에서 `403` | 연결한 GitHub 앱의 저장소 접근 범위와 조직·워크스페이스 정책을 확인합니다. 공개 저장소 여부와 연결 도구의 접근 범위는 별개입니다. |
+| 설치 대상 경로가 읽기 전용이거나 쓰기 실패 | 받는 사람의 환경이 스킬 설치를 지원하는지, 공식 설치 절차에서 허용된 개인 설치 대상에 쓰고 있는지 확인합니다. 실제 제한이 있으면 관리자나 해당 환경의 안내를 따릅니다. |
+| 스킬 설치 도구·기능이 없음 | 현재 환경에서는 지속적인 설치를 완료할 수 없습니다. 아래의 현재 대화 참고 자료 사용법을 이용할 수 있습니다. |
+| `Missing --path for GitHub URL` / `Invalid skill name` | 해당 설치 스크립트에 `--path . --name blue-ladder-content-studio`를 함께 전달했는지 확인합니다. URL만으로 설치 경로와 이름이 자동 결정된다고 가정하지 않습니다. |
+| `SKILL.md`를 찾지 못함 | 이 저장소의 스킬 경로는 `.`입니다. 저장소 안에 별도의 `blue-ladder-content-studio/` 하위 폴더가 있다고 가정하지 않습니다. ZIP 안에는 해당 이름의 최상위 폴더가 있습니다. |
+| `resumet` 원본 저장소로 푸시할 권한이 없음 | 개인용 설치 과정에서는 원본 저장소로 푸시하지 않습니다. 설치 대상과 원본 저장소를 혼동하지 않았는지 확인합니다. |
+| 플러그인 가져오기·매니페스트 검사 실패 | 이 저장소는 독립 스킬입니다. 해당 환경에서 지원하는 스킬 설치 방식을 선택합니다. |
+
+GitHub 연결 도구의 접근 범위 설정은 [ChatGPT에 GitHub 연결하기](https://help.openai.com/en/articles/11145903-connecting-github-to-chatgpt), 스킬·플러그인 관리 정책은 [워크스페이스 스킬 안내](https://learn.chatgpt.com/docs/enterprise/skills)를 참고하세요. 실제 권한 차단이 확인되면 이를 우회하지 않습니다.
 
 ### 스킬 설치 기능이 없는 환경
 
